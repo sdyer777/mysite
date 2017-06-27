@@ -1,11 +1,18 @@
 {% load static %}
-
+<script type="text/javascript" src="{% static 'polls/d3/d3.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" /><h1>Question List</h1>
+
+<script>
+    var blabbo="{{ latest_question_list }}"
+</script>
 
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
          <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+         <svg>
+             <circle cx="50" cy="50" r="{{question.id}}" style="fill: green;"></circle>
+         </svg>
     {% endfor %}
     </ul>
 {% else %}
